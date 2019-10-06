@@ -1,6 +1,7 @@
 package com.softwaretina.models.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Movimiento extends Auditoria {
@@ -9,6 +10,7 @@ public class Movimiento extends Auditoria {
     private long id;
     private String descripcion;
 
+    @NotNull
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "proceso_id", referencedColumnName = "id")
     private Proceso proceso;

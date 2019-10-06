@@ -1,6 +1,8 @@
 package com.softwaretina.models.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Proceso extends Auditoria{
@@ -15,8 +17,13 @@ public class Proceso extends Auditoria{
 
     private ESTADO estado;
 
-    private boolean eliminado;
+    @NotNull
+    @OneToMany
+    @JoinColumn(name="categoria_id",referencedColumnName = "id")
+    private List<Tag> tags; //Ejemplo AMBIENTAL - PEPSI
 
+
+    @NotNull
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "grupo_id", referencedColumnName = "id")
     private Grupo grupo;
@@ -61,14 +68,6 @@ public class Proceso extends Auditoria{
         this.estado = estado;
     }
 
-    public boolean isEliminado() {
-        return eliminado;
-    }
-
-    public void setEliminado(boolean eliminado) {
-        this.eliminado = eliminado;
-    }
-
     public Grupo getGrupo() {
         return grupo;
     }
@@ -77,4 +76,11 @@ public class Proceso extends Auditoria{
         this.grupo = grupo;
     }
 
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
 }

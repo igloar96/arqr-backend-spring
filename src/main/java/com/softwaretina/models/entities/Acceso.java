@@ -1,10 +1,16 @@
 package com.softwaretina.models.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
 public class Acceso {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @NotNull
     @OneToOne
     @JoinColumn(name="account_id" , referencedColumnName = "id")
     private Account account;
