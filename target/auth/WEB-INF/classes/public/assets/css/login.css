@@ -1,0 +1,67 @@
+body {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    justify-items: center;
+    background-image: linear-gradient(15deg, rgb(19, 84, 122) 0%, rgb(128, 208, 199) 100%);
+}
+body::before{
+    content: '';
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: url('../img/blur-bg.jpg') center center no-repeat;
+    background-size: cover;
+    will-change: transform;
+    z-index: -1;
+}
+
+.logo {
+    justify-items: center;
+    align-content: center;
+    display: grid;
+}
+
+.login-box-container {
+    display: grid;
+    grid-template-rows: 1fr 50px 50px 50px;
+    grid-gap: 5px;
+    width: 350px;
+    height: 400px;
+    margin-top: 50px;
+    border-radius: 5%;
+}
+
+.logo-img {
+    width: 45%;
+    height: auto;
+    border-radius: 50%;
+    -webkit-background-size: cover; /* For WebKit*/
+    -moz-background-size: cover; /* Mozilla*/
+    -o-background-size: cover; /* Opera*/
+    background-size: cover;
+}
+
+.login-box-container > div {
+    text-align: center;
+}
+
+input {
+    width: 79%;
+    background: #0000007d;
+    border: 0;
+    color: white;
+    padding: 10px;
+    font-size: 1em;
+}
+
+#submitButton {
+    background: transparent;
+    border: 0;
+    color: #40bfc9;
+}
