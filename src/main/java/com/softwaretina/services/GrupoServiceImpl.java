@@ -4,7 +4,6 @@ import com.softwaretina.models.entities.Grupo;
 import com.softwaretina.models.exception.GrupoNoEncontradoException;
 import com.softwaretina.repository.GrupoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.event.EventListener;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;

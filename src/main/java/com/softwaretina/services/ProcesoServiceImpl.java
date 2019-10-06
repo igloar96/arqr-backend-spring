@@ -59,11 +59,8 @@ public class ProcesoServiceImpl implements ProcesoService {
 
     @Override
     public Proceso getProceso(Long procesoId, Long groupShouldToBe) throws ProcesoNoEncontradoException, NoAutorizadoException {
-        Proceso proceso = null;
-
-        if(proceso.getGrupo().getId() == groupShouldToBe){
-            this.procesoRepository.findById(procesoId).orElseThrow(()-> new ProcesoNoEncontradoException(""));
-        }else{
+        Proceso proceso = this.procesoRepository.findById(procesoId).orElseThrow(()-> new ProcesoNoEncontradoException(""));
+        if(proceso.getGrupo().getId() != groupShouldToBe){
             throw new NoAutorizadoException("Se intento modificar un proceso de otro grupo");
         }
 
@@ -72,7 +69,7 @@ public class ProcesoServiceImpl implements ProcesoService {
     }
 
     @Override
-    public void deleteProceso(Long procesoId,Long groupdShouldToBe) throws ProcesoNoEncontradoException, NoAutorizadoException {
+    public void deleteProceso(Long procesoId, Long groupdShouldToBe) throws ProcesoNoEncontradoException, NoAutorizadoException {
         Proceso proceso = this.getProceso(procesoId,groupdShouldToBe);
 
         this.procesoRepository.delete(proceso);

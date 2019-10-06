@@ -2,6 +2,7 @@ package com.softwaretina.services;
 
 import com.softwaretina.models.entities.Account;
 import com.softwaretina.models.exception.CuentaNoEncontradaException;
+import com.softwaretina.models.exception.GrupoNoEncontradoException;
 import com.softwaretina.models.exception.NoAutorizadoException;
 import org.springframework.data.domain.Page;
 
@@ -11,7 +12,7 @@ public interface AccountService {
 
     Page<Account> getAccounts(Long grupoId, int limit, int offset) ;
 
-    Account createAccount(Account Account,Long grupoId)  ;
+    Account createAccount(Account Account,Long grupoId) throws GrupoNoEncontradoException;
 
     @Transactional
     Account updateAccount(Account AccountToUpdate, Long groupShouldToBe) throws NoAutorizadoException, CuentaNoEncontradaException;

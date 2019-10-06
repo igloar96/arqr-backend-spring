@@ -17,6 +17,10 @@ public class Proceso extends Auditoria{
 
     private ESTADO estado;
 
+    @OneToOne
+    @JoinColumn(name="asignado_id",referencedColumnName = "id")
+    private Account empleadoAsignado;
+
     @NotNull
     @OneToMany
     @JoinColumn(name="categoria_id",referencedColumnName = "id")

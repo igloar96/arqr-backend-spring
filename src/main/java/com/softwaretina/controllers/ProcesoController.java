@@ -32,7 +32,7 @@ public class ProcesoController {
     Proceso create(
             @PathVariable("grupo_id") Long grupoId,
             @RequestBody Proceso proceso) throws Exception {
-        proceso.setAccount(this.logginService.getLoggedAccount());
+        proceso.setModifingAccount(this.logginService.getLoggedAccount());
         return this.procesoService.createProceso(proceso, grupoId);
     }
 
@@ -40,7 +40,7 @@ public class ProcesoController {
     Proceso update(
             @PathVariable("grupo_id") Long grupoId,
             @RequestBody Proceso proceso) throws Exception {
-        proceso.setAccount(this.logginService.getLoggedAccount());
+        proceso.setModifingAccount(this.logginService.getLoggedAccount());
         return this.procesoService.updateProceso(proceso, grupoId);
     }
 

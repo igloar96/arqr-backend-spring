@@ -1,15 +1,13 @@
 package com.softwaretina.repository;
 
-import com.softwaretina.models.entities.Tag;
+import com.softwaretina.models.entities.Movimiento;
+import com.softwaretina.models.entities.Proceso;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
-public interface TagRepository  extends JpaRepository<Tag,Long> {
-    Optional<Tag> getTagById(Long id);
-    Page<Tag> getTagsByGrupoId(Long grupoId, Pageable pr);
+public interface MovimientoRepository extends JpaRepository<Movimiento,Long> {
+    Page<Movimiento> findMovimientosByProceso(Proceso proceso, Pageable pr);
 }

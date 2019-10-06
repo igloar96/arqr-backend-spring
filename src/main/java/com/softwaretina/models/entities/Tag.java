@@ -1,5 +1,7 @@
 package com.softwaretina.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -12,12 +14,21 @@ public class Tag extends Auditoria{
     @NotNull
     private String name;
 
+    @JsonIgnore
     @NotNull
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="grupo_id",referencedColumnName = "id")
     private Grupo grupo;
 
     private Long costoUnitario;
+
+    private CATEGORIA categoria;
+
+    @NotNull
+    public enum CATEGORIA{
+        SERVICIO,
+        CLIENTE,
+    }
 
     public long getId() {
         return id;
@@ -41,5 +52,21 @@ public class Tag extends Auditoria{
 
     public void setGrupo(Grupo grupo) {
         this.grupo = grupo;
+    }
+
+    public Long getCostoUnitario() {
+        return costoUnitario;
+    }
+
+    public void setCostoUnitario(Long costoUnitario) {
+        this.costoUnitario = costoUnitario;
+    }
+
+    public CATEGORIA getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(CATEGORIA categoria) {
+        this.categoria = categoria;
     }
 }

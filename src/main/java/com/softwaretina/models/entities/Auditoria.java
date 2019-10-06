@@ -24,7 +24,7 @@ public abstract class Auditoria{
     @JoinColumn(name = "usuario_modificador", referencedColumnName = "id")
     private Account modifiedBy;
 
-    public void setAccount(Account account){
+    public void setModifingAccount(Account account){
         this._loggedAccound = account;
     }
 
