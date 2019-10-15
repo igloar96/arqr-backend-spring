@@ -23,7 +23,7 @@ public class Proceso extends Auditoria{
 
     @NotNull
     @OneToMany
-    @JoinColumn(name="categoria_id",referencedColumnName = "id")
+    @JoinColumn(name="proceso_id",referencedColumnName = "id")
     private List<Tag> tags; //Ejemplo AMBIENTAL - PEPSI
 
 

@@ -77,11 +77,11 @@ public class Application  extends SpringBootServletInitializer {
         Tag tag1 = new Tag();
         tag1.setGrupo(grupo);
         tag1.setName("Software_Development");
-        tag1.setCategoria(Tag.CATEGORIA.SERVICIO);
+        tag1.setTipo(Tag.TAG_TIPO.SERVICIO);
         Tag tag2 = new Tag();
         tag2.setName("Oracle");
         tag2.setGrupo(grupo);
-        tag2.setCategoria(Tag.CATEGORIA.CLIENTE);
+        tag2.setTipo(Tag.TAG_TIPO.CLIENTE);
 
 
         this.tagRepository.save(tag1);
@@ -90,15 +90,17 @@ public class Application  extends SpringBootServletInitializer {
         /*
          * Proceso
          * */
-        Proceso proceso = new Proceso();
-        proceso.setDescripcion("Proceso de instalacion ARQR finalizado.");
-        proceso.setEstado(Proceso.ESTADO.FINALIZADO);
-        proceso.setNombre("ARQR INSTALLATION");
-        proceso.setGrupo(grupo);
-        proceso.setModifingAccount(accountAdmin);
-        proceso.setTags(Arrays.asList(tag1,tag2));
+        for(int i = 0; i<100;i++){
+            Proceso proceso = new Proceso();
+            proceso.setDescripcion("Proceso de instalacion ARQR finalizado.");
+            proceso.setEstado(Proceso.ESTADO.FINALIZADO);
+            proceso.setNombre("ARQR INSTALLATION");
+            proceso.setGrupo(grupo);
+            proceso.setModifingAccount(accountAdmin);
+            proceso.setTags(Arrays.asList(tag1,tag2));
 
-        this.procesoRepository.save(proceso);
+            this.procesoRepository.save(proceso);
+        }
 
     }
 }

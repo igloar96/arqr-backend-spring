@@ -8,5 +8,5 @@ public interface AccesoService {
 
     Page<Acceso> getAccesos(int limit, int offset) throws CuentaNoEncontradaException;
 
-    Acceso createAcceso(Acceso acceso) throws CuentaNoEncontradaException;
+    Acceso createAcceso(String ip) throws CuentaNoEncontradaException;
 }

@@ -20,12 +20,12 @@ public class Tag extends Auditoria{
     @JoinColumn(name="grupo_id",referencedColumnName = "id")
     private Grupo grupo;
 
-    private Long costoUnitario;
+    private Long puntos;
 
-    private CATEGORIA categoria;
+    private TAG_TIPO tipo;
 
     @NotNull
-    public enum CATEGORIA{
+    public enum TAG_TIPO{
         SERVICIO,
         CLIENTE,
     }
@@ -54,19 +54,19 @@ public class Tag extends Auditoria{
         this.grupo = grupo;
     }
 
-    public Long getCostoUnitario() {
-        return costoUnitario;
+    public Long getPuntos() {
+        return puntos;
     }
 
-    public void setCostoUnitario(Long costoUnitario) {
-        this.costoUnitario = costoUnitario;
+    public void setPuntos(Long puntos) {
+        this.puntos = puntos;
     }
 
-    public CATEGORIA getCategoria() {
-        return categoria;
+    public TAG_TIPO getTipo() {
+        return tipo;
     }
 
-    public void setCategoria(CATEGORIA categoria) {
-        this.categoria = categoria;
+    public void setTipo(TAG_TIPO tipo) {
+        this.tipo = tipo;
     }
 }

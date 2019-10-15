@@ -22,7 +22,10 @@ public class Account  {
     private String password;
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "roles")
-    private List<String> roles;
+    private List<ROLES> roles;
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(name = "permisos")
+    private List<PERMISOS> permisos;
     @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     private Grupo grupo;
     @JsonIgnore
@@ -64,7 +67,7 @@ public class Account  {
 
     public void AddRole(ROLES role){
 
-        this.roles.add(role.name().replace("GID",this.grupo.getId().toString()));
+        this.roles.add(role);
     }
     public void setUsername(String username) {
         this.username = username;
@@ -86,11 +89,11 @@ public class Account  {
         this.password = new BCryptPasswordEncoder().encode(password);
     }
 
-    public List<String> getRoles() {
+    public List<ROLES> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(List<ROLES> roles) {
         this.roles = roles;
     }
 
@@ -134,10 +137,24 @@ public class Account  {
         this.grupo = grupo;
     }
 
+    public List<PERMISOS> getPermisos() {
+        return permisos;
+    }
+
+    public void setPermisos(List<PERMISOS> permisos) {
+        this.permisos = permisos;
+    }
+
     public enum ROLES{
+        ROLE_APP_MASTER,//solo el crea grupos / empresas (YO) jeje
         ROLE_ADMIN,
-        ROLE_SUPERVISOR,
-        ROLE_MODERADOR,
-        ROLE_USUARIO
+        ROLE_EMPLOYEE,
+        ROLE_CLIENT
+    }
+    public enum PERMISOS{
+        CREATE,
+        READ,
+        UPDATE,
+        DELETE
     }
 }

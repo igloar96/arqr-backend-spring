@@ -20,7 +20,7 @@ public class UserPrincipal implements UserDetails {
         List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
 
         this.account.getRoles().forEach(rol->{
-            list.add(new SimpleGrantedAuthority(rol));
+            list.add(new SimpleGrantedAuthority(rol.toString()));
 
         });
         return list;

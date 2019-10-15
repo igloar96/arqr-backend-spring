@@ -45,9 +45,9 @@ public class TagServiceImpl implements TagService {
     @Transactional
     public Tag updateTag(Tag tag, Long groupShouldToBe) throws NoAutorizadoException, TagNoEncontradoException, GrupoNoEncontradoException {
         Tag tagDb = this.getTag(tag.getId(),groupShouldToBe);
-        tagDb.setCategoria(tag.getCategoria());
+        tagDb.setTipo(tag.getTipo());
         tagDb.setName(tag.getName());
-        tagDb.setCostoUnitario(tag.getCostoUnitario());
+        tagDb.setPuntos(tag.getPuntos());
 
         return tagDb;
     }

@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class AccesoServiceImpl implements AccesoService {
 
@@ -25,8 +27,12 @@ public class AccesoServiceImpl implements AccesoService {
     }
 
     @Override
-    public Acceso createAcceso(Acceso acceso) throws CuentaNoEncontradaException {
+    public Acceso createAcceso(String ip) throws CuentaNoEncontradaException {
+        Acceso acceso = new Acceso();
         acceso.setAccount(this.logginService.getLoggedAccount());
+        acceso.setAt(LocalDateTime.now());
+        acceso.setIp(ip);
+
         return this.accesoRepository.save(acceso);
     }
 }
