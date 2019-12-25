@@ -11,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 import javax.transaction.Transactional;
 
 @Service
@@ -24,12 +26,32 @@ public class ProcesoServiceImpl implements ProcesoService {
 
 
     @Override
-    public Page<Proceso> getProcesos(Long grupoId,int limit, int offset) {
+    public Page<Proceso> getProcesos(Long grupoId,int limit, int offset,Date from, Date to,Long[] selectedTags) {
         PageRequest pr = PageRequest.of(offset,limit);
-
-        return this.procesoRepository.findProcesosByGrupoId(pr,grupoId);
+        Page<Proceso> results = null;
+        
+        if(from != null && to !=null) {
+        	results = this.procesoRepository.findProcesosBycreatedAtBetweenAndGrupoIdEqualsAndTagsIdIn(pr, from, to,grupoId,selectedTags);
+        }else {
+        	results = this.procesoRepository.findProcesosByGrupoId(pr,grupoId);
+        }
+        return results;
     }
 
+    @Override
+    public Page<Proceso> getProcesos(Long grupoId,int limit, int offset,Date from, Date to,String search,Long[] selectedTags) {
+        PageRequest pr = PageRequest.of(offset,limit);
+        Page<Proceso> results = null;
+        
+        if(from != null && to !=null) {
+        	results = this.procesoRepository.findProcesosBycreatedAtBetweenAndGrupoIdEqualsAndNombreContainingIgnoreCaseOrDescripcionContainingIgnoreCaseAndTagsIdIn(pr, from, to,grupoId,search,search,selectedTags);
+        }else {
+        	results = this.procesoRepository.findProcesosByGrupoIdAndNombreContainingIgnoreCaseOrDescripcionContainingIgnoreCaseAndTagsIdIn(pr,grupoId,search,search,selectedTags);
+        }
+        return results;
+    }
+    
+    
     @Override
     public Proceso createProceso(Proceso proceso, Long grupoId) throws GrupoNoEncontradoException {
         Grupo grupo = this.grupoService.getGrupo(grupoId);

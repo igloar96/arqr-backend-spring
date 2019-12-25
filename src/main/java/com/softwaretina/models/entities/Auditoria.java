@@ -4,6 +4,7 @@ package com.softwaretina.models.entities;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @MappedSuperclass
 public abstract class Auditoria{
@@ -11,9 +12,9 @@ public abstract class Auditoria{
     @Transient
     private Account _loggedAccound;
 
-    private LocalDateTime createdAt;
+    private Date createdAt;
 
-    private LocalDateTime modifiedAt;
+    private Date modifiedAt;
 
 
     @OneToOne(cascade = CascadeType.MERGE)
@@ -30,14 +31,14 @@ public abstract class Auditoria{
 
     @PrePersist
     public void onCreate(){
-        this.createdAt = LocalDateTime.now();
+        this.createdAt = new Date();
         this.createdBy = this._loggedAccound;
 
     }
 
     @PreUpdate
     public void onUpdate(){
-        this.modifiedAt = LocalDateTime.now();
+        this.modifiedAt = new Date();
         this.modifiedBy = this._loggedAccound;
     }
 

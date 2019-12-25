@@ -1,5 +1,6 @@
 package com.softwaretina.controllers;
 
+import com.softwaretina.models.dto.AccountTagsDto;
 import com.softwaretina.models.entities.Account;
 import com.softwaretina.services.AccountService;
 import com.softwaretina.services.auth.LogginService;
@@ -22,6 +23,7 @@ public class AccountController {
 
     @GetMapping("/account/info")
     public ResponseEntity<Account> getAccountInformation() throws Exception {
+    	AccountTagsDto accountInfo = new AccountTagsDto();
         return ResponseEntity.ok(this.logginService.getLoggedAccount());
     }
 

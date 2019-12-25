@@ -8,10 +8,13 @@ import com.softwaretina.models.exception.ProcesoNoEncontradoException;
 import org.springframework.data.domain.Page;
 
 import javax.transaction.Transactional;
-import java.util.Optional;
+
+import java.util.Date;
 
 public interface ProcesoService {
-    Page<Proceso> getProcesos(Long grupoId,int limit, int offset) throws CuentaNoEncontradaException;
+    Page<Proceso> getProcesos(Long grupoId,int limit, int offset,Date from, Date to,Long[] selectedTags) throws CuentaNoEncontradaException;
+    
+    Page<Proceso> getProcesos(Long grupoId,int limit, int offset,Date from, Date to,String search,Long[] selectedTags) throws CuentaNoEncontradaException;
 
     Proceso createProceso(Proceso proceso,Long grupoId) throws GrupoNoEncontradoException;
 

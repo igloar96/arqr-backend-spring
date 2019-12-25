@@ -151,10 +151,12 @@ public class Account  {
         ROLE_EMPLOYEE,
         ROLE_CLIENT
     }
+    
     public enum PERMISOS{
         CREATE,
         READ,
         UPDATE,
-        DELETE
+        DELETE,
+        VIEW_ALL_USERS
     }
 }
