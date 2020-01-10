@@ -30,11 +30,11 @@
             <version>2.1.1.RELEASE</version>
         </dependency>
 
-        <dependency>
+<!--        <dependency>
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>
             <version>1.5.7</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.hibernate</groupId>

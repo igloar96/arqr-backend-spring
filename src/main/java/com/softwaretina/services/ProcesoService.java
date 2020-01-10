@@ -1,10 +1,7 @@
 package com.softwaretina.services;
 
 import com.softwaretina.models.entities.Proceso;
-import com.softwaretina.models.exception.CuentaNoEncontradaException;
-import com.softwaretina.models.exception.GrupoNoEncontradoException;
-import com.softwaretina.models.exception.NoAutorizadoException;
-import com.softwaretina.models.exception.ProcesoNoEncontradoException;
+import com.softwaretina.models.exception.*;
 import org.springframework.data.domain.Page;
 
 import javax.transaction.Transactional;
@@ -16,7 +13,7 @@ public interface ProcesoService {
     
     Page<Proceso> getProcesos(Long grupoId,int limit, int offset,Date from, Date to,String search,Long[] selectedTags) throws CuentaNoEncontradaException;
 
-    Proceso createProceso(Proceso proceso,Long grupoId) throws GrupoNoEncontradoException;
+    Proceso createProceso(Proceso proceso,Long grupoId) throws GrupoNoEncontradoException, NoAutorizadoException, TagNoEncontradoException;
 
     @Transactional
     Proceso updateProceso(Proceso procesoToUpdate, Long groupShouldToBe) throws NoAutorizadoException, ProcesoNoEncontradoException;

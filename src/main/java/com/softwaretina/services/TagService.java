@@ -19,9 +19,10 @@ public interface TagService {
     @Transactional
     Tag updateTag(Tag tag, Long groupShouldToBe) throws NoAutorizadoException, TagNoEncontradoException, GrupoNoEncontradoException;
 
-    Tag getTag(Long MovimientoId, Long groupShouldToBe) throws NoAutorizadoException, TagNoEncontradoException, GrupoNoEncontradoException;
+    Tag getTag(Long tagId, Long groupShouldToBe) throws NoAutorizadoException, TagNoEncontradoException, GrupoNoEncontradoException;
 
     void deleteTag(Long tagId, Long groupdShouldToBe) throws NoAutorizadoException, TagNoEncontradoException, GrupoNoEncontradoException;
 
     List<Tag> getTagsByProceso(Long procesoId, Long groupdShouldToBe) throws ProcesoNoEncontradoException, NoAutorizadoException;
+
 }

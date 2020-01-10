@@ -2,9 +2,11 @@ package com.softwaretina.services;
 
 import com.softwaretina.models.entities.Grupo;
 import com.softwaretina.models.entities.Proceso;
+import com.softwaretina.models.entities.Tag;
 import com.softwaretina.models.exception.GrupoNoEncontradoException;
 import com.softwaretina.models.exception.NoAutorizadoException;
 import com.softwaretina.models.exception.ProcesoNoEncontradoException;
+import com.softwaretina.models.exception.TagNoEncontradoException;
 import com.softwaretina.repository.ProcesoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,6 +25,9 @@ public class ProcesoServiceImpl implements ProcesoService {
 
     @Autowired
     private GrupoService grupoService;
+
+    @Autowired
+    private TagService tagService;
 
 
     @Override
@@ -53,9 +58,14 @@ public class ProcesoServiceImpl implements ProcesoService {
     
     
     @Override
-    public Proceso createProceso(Proceso proceso, Long grupoId) throws GrupoNoEncontradoException {
+    public Proceso createProceso(Proceso proceso, Long grupoId) throws GrupoNoEncontradoException, NoAutorizadoException, TagNoEncontradoException {
         Grupo grupo = this.grupoService.getGrupo(grupoId);
         proceso.setGrupo(grupo);
+
+        //verificacion de permisos en tag
+        for(Tag tag : proceso.getTags()){
+            this.tagService.getTag(tag.getId(),grupoId);
+        }
 
         return this.procesoRepository.save(proceso);
     }
